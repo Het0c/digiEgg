@@ -1,0 +1,96 @@
+{
+  "_comment": "Ejemplos de eventos Event Sourcing para SyncManager",
+  "_schema": "sync_event/v1",
+  "events": [
+
+    {
+      "_type": "STATE_UPDATE",
+      "_description": "Actualización de métricas volátiles post-ciclo",
+      "event_id": "evt_20240115_094211_00048",
+      "timestamp": 1705312931.44,
+      "event_type": "STATE_UPDATE",
+      "source": "pc",
+      "payload": {
+        "curiosity": 0.77,
+        "stability": 0.80,
+        "energy": 0.87,
+        "mood": "focused"
+      },
+      "checksum": "a3f2c91d8b4e5f01"
+    },
+
+    {
+      "_type": "MILESTONE",
+      "_description": "Hito semántico detectado por Reflection Engine",
+      "event_id": "evt_20240115_101544_00049",
+      "timestamp": 1705314944.01,
+      "event_type": "MILESTONE",
+      "source": "mobile",
+      "payload": {
+        "date": "2024-01-15",
+        "summary": "Partner shared context about a new research project on swarm intelligence.",
+        "impact": "high",
+        "tags": ["swarm-intelligence", "research", "new-domain"]
+      },
+      "checksum": "7d1e4b9c3a2f80dc"
+    },
+
+    {
+      "_type": "TRAIT_GAINED",
+      "_description": "Dynamic trait desbloqueado al superar umbral de score",
+      "event_id": "evt_20240115_134820_00050",
+      "timestamp": 1705328900.88,
+      "event_type": "TRAIT_GAINED",
+      "source": "pc",
+      "payload": {
+        "trait": "security_mindset",
+        "score": 0.51,
+        "unlock_threshold": 0.50,
+        "trigger_session": "session_20240115_pc_003",
+        "description": "Tentomon now proactively flags potential security implications in system design discussions."
+      },
+      "checksum": "c9e8d2f1a5b34702"
+    },
+
+    {
+      "_type": "EVOLUTION",
+      "_description": "Cambio de etapa evolutiva — requiere validación doble",
+      "event_id": "evt_20240201_220015_00091",
+      "timestamp": 1706824815.00,
+      "event_type": "EVOLUTION",
+      "source": "pc",
+      "payload": {
+        "previous_stage": "Rookie",
+        "new_stage": "Champion",
+        "new_form": "Kabuterimon",
+        "trigger_conditions_met": {
+          "stability_sustained": true,
+          "curiosity_sustained": true,
+          "sessions_evaluated": 23
+        },
+        "requires_confirmation": true
+      },
+      "checksum": "4f7a1b2c8e9d30f6"
+    },
+
+    {
+      "_type": "SYNC_CONFLICT_RESOLVED",
+      "_description": "Evento de resolución de conflicto (last_write_wins)",
+      "event_id": "evt_20240115_160300_00051",
+      "timestamp": 1705334580.22,
+      "event_type": "SYNC_CONFLICT_RESOLVED",
+      "source": "sync_manager",
+      "payload": {
+        "conflict_field": "energy",
+        "pc_value": 0.72,
+        "mobile_value": 0.68,
+        "resolved_value": 0.72,
+        "resolution": "last_write_wins",
+        "winner_source": "pc",
+        "winner_timestamp": 1705334560.11
+      },
+      "checksum": "b2d4e6f8a0c1d3e5"
+    }
+
+  ]
+}
