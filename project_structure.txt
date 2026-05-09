@@ -1,69 +1,22 @@
 digimon-agent/
-│
 ├── README.md
-├── pyproject.toml               # Dependencias: llama-cpp-python | openai | chromadb
-├── .env                         # API keys, rutas de modelo, config de cloud
-│
-├── core/                        # Módulos del Cognitive Controller
-│   ├── __init__.py
-│   ├── cognitive_controller.py  # Orquestador principal — Agent Loop
-│   ├── soul_manager.py          # I/O de soul.md
-│   ├── memory_manager.py        # Short-term + Vector Store
-│   ├── llm_interface.py         # Abstracción sobre modelo local / API
-│   ├── reflection_engine.py     # Análisis post-respuesta
-│   ├── state_engine.py          # Variables dinámicas y decay functions
-│   └── sync_manager.py          # Event Sourcing + protocolo cloud
-│
+├── project_structure.txt
+├── soul.md
+├── sync_events.json
+├── core/
+│   ├── models.py
+│   ├── cognitive_controller.py
+│   ├── soul_manager.py
+│   ├── memory_manager.py
+│   ├── motivation_engine.py
+│   ├── reflection_engine.py
+│   ├── state_engine.py
+│   ├── llm_interface.py
+│   └── sync_manager.py
 ├── config/
-│   ├── tentomon.yaml            # System message base, parámetros de inferencia
-│   ├── evolution_rules.yaml     # Condiciones de umbral para evolución
-│   └── trait_definitions.yaml  # Definición de dynamic traits y unlock conditions
-│
+│   ├── evolution_rules.yaml
+│   └── traits.yaml
 ├── persistence/
-│   ├── soul.md                  # Archivo de persistencia principal
-│   ├── .sync_cursor             # Timestamp del último evento sincronizado
 │   └── event_log/
-│       ├── events_2024_01.jsonl # Log de eventos por mes (JSONL, append-only)
-│       └── events_2024_02.jsonl
-│
 ├── memory/
-│   ├── vector_store/            # Índice ChromaDB o FAISS (auto-generado)
-│   │   ├── chroma.sqlite3
-│   │   └── index/
-│   └── embeddings_cache/        # Cache de embeddings para evitar re-cómputo
-│
-├── models/                      # Modelos locales (no se versiona en git)
-│   └── .gitkeep
-│
-├── agents/                      # Instancias adicionales (escalabilidad multi-Digimon)
-│   ├── __init__.py
-│   ├── base_agent.py            # Clase abstracta AgentBase
-│   ├── tentomon/
-│   │   ├── soul.md              # soul.md específico de Tentomon
-│   │   └── config.yaml
-│   └── agumon/                  # Plantilla para segundo agente
-│       ├── soul.md
-│       └── config.yaml
-│
-├── interfaces/
-│   ├── cli.py                   # Interfaz de línea de comandos
-│   ├── api_server.py            # FastAPI server para cliente móvil
-│   └── mobile_client/           # Protocolo de comunicación PC ↔ Mobile
-│       ├── protocol.py
-│       └── event_consumer.py
-│
-├── cloud/
-│   ├── __init__.py
-│   ├── driver_base.py           # Interfaz abstracta CloudDriver
-│   ├── gdrive_driver.py         # Implementación Google Drive
-│   ├── s3_driver.py             # Implementación AWS S3
-│   └── local_driver.py          # Driver local para desarrollo/testing
-│
 └── tests/
-    ├── test_soul_manager.py
-    ├── test_reflection_engine.py
-    ├── test_sync_manager.py
-    ├── test_agent_loop.py
-    └── fixtures/
-        ├── soul_fixture.md
-        └── events_fixture.json
